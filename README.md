@@ -24,6 +24,9 @@ We'll be explicitly looking at coding style, code organization, API design, and 
 I chose to implement the python Web Service Client. By using the geoip2 web service, we ensure that the data is always up to date.
 Swagger Link: http://127.0.0.1:8000/swagger/
 
+https://github.com/user-attachments/assets/88ab3427-fb5b-489b-8898-0fa73aee512f
+
+
 **Note** the python package is supported as an official Client API from MaxMind.
 There is an equivalent third-party API for Go, but it is not officially supported by MaxMind - https://pkg.go.dev/github.com/savaki/geoip2#section-readme.
 If we didn't want to go the route of an unsupported API, we could set up a chron job to manually download the latest binary database on a nightly basis and query that.
