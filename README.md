@@ -22,14 +22,22 @@ We'll be explicitly looking at coding style, code organization, API design, and 
 
 ## My Solution:
 I chose to implement the python Web Service Client. By using the geoip2 web service, we ensure that the data is always up to date.
+Swagger Link: http://127.0.0.1:8000/swagger/
 
 **Note** the python package is supported as an official Client API from MaxMind.
 There is an equivalent third-party API for Go, but it is not officially supported by MaxMind - https://pkg.go.dev/github.com/savaki/geoip2#section-readme.
 If we didn't want to go the route of an unsupported API, we could set up a chron job to manually download the latest binary database on a nightly basis and query that.
 
 ### AI Usage:
-* I used Claude Code to generate the test cases, and then tweaked them to ensure the assertions were helpful and the tests run
-* 
+I used Claude Code to generate the test cases, and then tweaked them to ensure the assertions were helpful and the tests run
+
+### Extensions:
+Use the Database exposed by GeoIP to get the data when we receive and `OutOfQueriesError` from the API.
+* Since I'm basing my code on the free GeoLite, there are only 30 hits allowed daily
+* Customers should still get data if you go above this number
+* Set up a nightly job to pull the latest binary database
+* In case of `OutOfQueriesError`, query the database for the iso code
+* **Note** This could also be used if we decide that we don't want to introduce the potential latency of querying another service 
 
 ### Disclosures: 
 I didn't start the timer for the 4 hours until after I had done the initial configuration of the project
