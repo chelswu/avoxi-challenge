@@ -122,3 +122,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+GEO_IP_ACCOUNT = 1209810
+GEO_IP_LICENSE = "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"
