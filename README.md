@@ -27,10 +27,12 @@ I chose to implement the python Web Service Client. By using the geoip2 web serv
 There is an equivalent third-party API for Go, but it is not officially supported by MaxMind - https://pkg.go.dev/github.com/savaki/geoip2#section-readme.
 If we didn't want to go the route of an unsupported API, we could set up a chron job to manually download the latest binary database on a nightly basis and query that.
 
+### AI Usage:
+* I used Claude Code to generate the test cases, and then tweaked them to ensure the assertions were helpful and the tests run
+* 
+
 ### Disclosures: 
 I didn't start the timer for the 4 hours until after I had done the initial configuration of the project
 * Creating repo
 * Creating Django project
 * Creating MaxMind account
-
-I used Claude Code to generate the test cases, and then tweaked them to ensure the assertions were helpful and the tests run.

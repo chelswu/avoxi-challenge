@@ -1,7 +1,7 @@
 import logging
 from django.http import JsonResponse
 from drf_yasg.utils import swagger_auto_schema
-from geoip2.errors import GeoIP2Error, AuthenticationError, InvalidRequestError
+from geoip2.errors import GeoIP2Error
 from geoip2.webservice import Client
 from rest_framework import status
 from rest_framework.views import APIView

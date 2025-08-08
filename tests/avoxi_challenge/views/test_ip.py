@@ -239,11 +239,18 @@ class IPValidationIntegrationTest(TestCase):
         """Integration test with real GeoIP service (requires valid credentials)"""
         # Only run this test if you have valid GeoIP credentials configured
         # and want to test against the real service
+        # We use a Cayman Island address here because it has different values in the fips vs ISO-3166 alpha2 columns,
+        # we want to ensure that the correct value is picked
+        # https://www.geonames.org/countries/
         response = self.client.get(self.url, {
-            'ip': '8.8.8.8',  # Google's public DNS
-            'country_list': ['US']
+            'ip': '138.43.115.4',  # Cayman Island IP address
+            'country_list': ['US', 'KY']
         })
 
         # This test will depend on your actual GeoIP service configuration
         # Comment out or skip if you don't want to hit external services in tests
-        self.assertIn(response.status_code, [200, 500])  # 500 if no valid credentials
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        data = response.json()
+        self.assertEqual(data['ip'], '138.43.115.4')
+        self.assertEqual(data['iso_code'], 'KY')
+        self.assertTrue(data['is_allowed'])

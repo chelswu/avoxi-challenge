@@ -124,5 +124,6 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # GEO IP account and license info
+# NOTE: These should be secret, but since this is local code leaving it here
 GEO_IP_ACCOUNT = 1209810
 GEO_IP_LICENSE = "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"
