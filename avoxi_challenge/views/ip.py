@@ -31,7 +31,7 @@ class IPValidationView(APIView):
         try:
             geolite_client = Client(settings.GEO_IP_ACCOUNT, settings.GEO_IP_LICENSE, host="geolite.info")
             geolite_response = geolite_client.country(serializer.validated_data["ip"])
-            iso_code = geolite_response.country.iso_code
+            iso_code = geolite_response.country.iso_code.upper() if geolite_response.country.iso_code else None
             # Optional: handle OutOfQueriesError by getting data from database
         except GeoIP2Error as error:
             logger.exception(f"Error connecting to GeoIP client: {error}")
@@ -42,5 +42,5 @@ class IPValidationView(APIView):
             "iso_code": iso_code,
             "is_allowed": iso_code in serializer.validated_data["country_list"],
         })
-        response_serializer.is_valid(raise_exception=True)
+        response_serializer.is_valid()
         return JsonResponse(response_serializer.data, status=status.HTTP_200_OK)
